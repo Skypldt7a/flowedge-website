@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Flow Edge — Websites voor vakmensen die gevonden willen worden</title>
-  <meta name="description" content="Flow Edge bouwt professionele, Google-geoptimaliseerde websites voor vakmensen. Meer aanvragen via internet — zonder gedoe.">
-  <meta property="og:title" content="Flow Edge — Websites voor vakmensen">
+  <title>FlowEdge — Websites voor vakmensen die gevonden willen worden</title>
+  <meta name="description" content="FlowEdge bouwt professionele, Google-geoptimaliseerde websites voor vakmensen in Nederland. Meer aanvragen via internet — zonder gedoe.">
+  <meta property="og:title" content="FlowEdge — Websites voor vakmensen">
   <meta property="og:description" content="Veel vakmensen zijn beter dan hun website laat zien. Ik zorg dat die eerste indruk wél klopt.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://flowedge.nl">
@@ -13,14 +13,14 @@
   {
     "@context": "https://schema.org",
     "@type": "Organization",
-    "name": "Flow Edge",
+    "name": "FlowEdge",
     "url": "https://flowedge.nl",
     "description": "Professionele websites voor vakmensen — volledig geoptimaliseerd voor Google en mobiel.",
     "founder": {
       "@type": "Person",
       "name": "Sky Lemos",
       "jobTitle": "Oprichter",
-      "worksFor": { "@type": "Organization", "name": "Flow Edge" }
+      "worksFor": {"@type": "Organization", "name": "FlowEdge"}
     },
     "areaServed": "NL",
     "serviceType": "Webdesign en online marketing voor vakmensen"
@@ -28,277 +28,567 @@
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,700&display=swap" rel="stylesheet">
   <style>
+    /* ── Reset ── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* ── Tokens ── */
     :root {
-      --dark:    #0E1420;
-      --blue:    #2563EB;
-      --blue2:   #1D4ED8;
-      --blue-lt: #EEF3FF;
-      --white:   #FFFFFF;
-      --ink:     #111827;
-      --ink2:    #374151;
-      --ink3:    #6B7280;
-      --border:  #E5E7EB;
-      --bg-lt:   #F7F9FC;
+      --dark:        #0C0F1A;
+      --dark2:       #0A0D17;
+      --blue:        #2563EB;
+      --blue2:       #1D4ED8;
+      --blue-glow:   rgba(37,99,235,0.18);
+      --warm:        #FAF9F7;
+      --white:       #FFFFFF;
+      --ink:         #111111;
+      --ink2:        #3D3D3D;
+      --ink3:        #6B7280;
+      --border:      #E5E7EB;
+      --border-warm: #E2E0DD;
     }
+
     html { scroll-behavior: smooth; }
     body {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      color: var(--ink); background: var(--white);
-      line-height: 1.6; -webkit-font-smoothing: antialiased;
+      background: var(--white);
+      color: var(--ink);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
     /* ── Nav ── */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      padding: 18px 48px;
+      height: 68px;
+      padding: 0 52px;
       display: flex; align-items: center; justify-content: space-between;
-      background: rgba(14,20,32,0.90);
-      backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
-      border-bottom: 1px solid rgba(255,255,255,0.07);
+      background: rgba(12,15,26,0.90);
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
     }
     .nav-logo {
-      font-size: 19px; font-weight: 800; color: #fff;
-      letter-spacing: -0.4px; text-decoration: none;
+      font-size: 18px; font-weight: 800; color: #fff;
+      letter-spacing: -0.5px; text-decoration: none;
     }
     .nav-logo span { color: var(--blue); }
     .nav-cta {
       display: inline-flex; align-items: center; gap: 8px;
       background: var(--blue); color: #fff; text-decoration: none;
       font-size: 14px; font-weight: 600; padding: 10px 22px;
-      border-radius: 8px; transition: background 0.2s;
+      border-radius: 8px; transition: background 0.2s, transform 0.15s;
+      white-space: nowrap;
     }
-    .nav-cta:hover { background: var(--blue2); }
+    .nav-cta:hover { background: var(--blue2); transform: translateY(-1px); }
 
-    /* ── Hero ── */
+    /* ── Hero (split screen) ── */
     #hero {
-      background: var(--dark);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
       min-height: 100vh;
-      display: flex; flex-direction: column; justify-content: center;
-      padding: 150px 48px 90px;
-      position: relative; overflow: hidden;
+      background: var(--dark);
+      overflow: hidden;
+      position: relative;
     }
     #hero::before {
-      content: ''; position: absolute; top: -200px; right: -200px;
-      width: 650px; height: 650px;
-      background: radial-gradient(circle, rgba(37,99,235,0.16) 0%, transparent 68%);
+      content: '';
+      position: absolute;
+      top: -200px; left: -100px;
+      width: 600px; height: 700px;
+      background: radial-gradient(ellipse at top left, rgba(37,99,235,0.10) 0%, transparent 60%);
       pointer-events: none;
     }
-    #hero::after {
-      content: ''; position: absolute; bottom: -80px; left: -80px;
-      width: 420px; height: 420px;
-      background: radial-gradient(circle, rgba(37,99,235,0.07) 0%, transparent 68%);
-      pointer-events: none;
+
+    .hero-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 120px 56px 80px 64px;
+      position: relative;
+      z-index: 1;
     }
-    .hero-inner {
-      max-width: 700px; margin: 0 auto;
-      text-align: center; position: relative; z-index: 1;
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2.2px;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 40px;
     }
-    .hero-label {
-      display: inline-block;
-      font-size: 11px; font-weight: 700; letter-spacing: 2.5px;
-      text-transform: uppercase; color: var(--blue);
-      background: rgba(37,99,235,0.14); padding: 6px 16px;
-      border-radius: 20px; margin-bottom: 30px;
+    .hero-tag::before {
+      content: '';
+      display: block;
+      width: 28px; height: 2px;
+      background: var(--blue);
+      border-radius: 1px;
     }
     .hero-h1 {
-      font-size: clamp(36px, 5.2vw, 62px);
-      font-weight: 900; color: #fff;
-      line-height: 1.08; letter-spacing: -1.8px; margin-bottom: 22px;
+      font-size: clamp(38px, 3.8vw, 60px);
+      font-weight: 900;
+      color: #ffffff;
+      line-height: 1.07;
+      letter-spacing: -2px;
+      margin-bottom: 28px;
     }
-    .hero-h1 em { font-style: normal; color: var(--blue); }
+    .hero-h1 em {
+      font-style: normal;
+      color: var(--blue);
+    }
     .hero-sub {
-      font-size: clamp(17px, 1.9vw, 20px);
-      color: rgba(255,255,255,0.66); line-height: 1.68;
-      max-width: 530px; margin: 0 auto 44px;
+      font-size: clamp(16px, 1.3vw, 18px);
+      color: rgba(255,255,255,0.58);
+      line-height: 1.74;
+      max-width: 420px;
+      margin-bottom: 52px;
     }
     .hero-buttons {
-      display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
     }
     .btn-primary {
       display: inline-flex; align-items: center; gap: 10px;
       background: var(--blue); color: #fff; text-decoration: none;
-      font-size: 16px; font-weight: 700; padding: 16px 34px;
+      font-size: 15px; font-weight: 700; padding: 15px 30px;
       border-radius: 10px; transition: background 0.2s, transform 0.15s;
+      white-space: nowrap;
     }
-    .btn-primary:hover { background: var(--blue2); transform: translateY(-1px); }
-    .btn-secondary {
+    .btn-primary:hover { background: var(--blue2); transform: translateY(-2px); }
+    .btn-ghost {
       display: inline-flex; align-items: center; gap: 10px;
-      background: rgba(255,255,255,0.08); color: #fff; text-decoration: none;
-      font-size: 16px; font-weight: 600; padding: 16px 34px;
-      border-radius: 10px; border: 1px solid rgba(255,255,255,0.15);
-      transition: background 0.2s;
+      background: transparent; color: rgba(255,255,255,0.70); text-decoration: none;
+      font-size: 15px; font-weight: 600; padding: 15px 24px;
+      border-radius: 10px; border: 1px solid rgba(255,255,255,0.14);
+      transition: background 0.2s, border-color 0.2s, color 0.2s;
+      white-space: nowrap;
     }
-    .btn-secondary:hover { background: rgba(255,255,255,0.13); }
-    .hero-note { margin-top: 22px; font-size: 13px; color: rgba(255,255,255,0.30); }
+    .btn-ghost:hover {
+      background: rgba(255,255,255,0.07);
+      border-color: rgba(255,255,255,0.26);
+      color: #fff;
+    }
+    .hero-note {
+      font-size: 13px;
+      color: rgba(255,255,255,0.24);
+      letter-spacing: 0.1px;
+    }
 
-    /* ── Stats ── */
-    #stats {
-      background: var(--white);
-      padding: 72px 48px;
-      border-bottom: 1px solid var(--border);
+    /* Hero right — photo fills entire half */
+    .hero-right {
+      position: relative;
+      overflow: hidden;
     }
-    .stats-grid {
-      max-width: 880px; margin: 0 auto;
-      display: grid; grid-template-columns: repeat(3,1fr); gap: 0;
+    .hero-right img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 8%;
     }
-    .stat-item { padding: 0 32px; text-align: center; }
-    .stat-item + .stat-item { border-left: 1px solid var(--border); }
-    .stat-number {
-      font-size: clamp(42px, 5vw, 60px);
-      font-weight: 900; color: var(--blue);
-      letter-spacing: -2px; line-height: 1; margin-bottom: 10px;
+    /* Gradient blending left edge into dark */
+    .hero-right::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; bottom: 0;
+      width: 140px;
+      background: linear-gradient(to right, var(--dark), transparent);
+      z-index: 1;
+      pointer-events: none;
     }
-    .stat-label { font-size: 15px; color: var(--ink2); line-height: 1.45; }
-    .stat-source { font-size: 11px; color: var(--ink3); margin-top: 6px; font-style: italic; }
+    /* Bottom vignette */
+    .hero-right::after {
+      content: '';
+      position: absolute;
+      left: 0; right: 0; bottom: 0;
+      height: 25%;
+      background: linear-gradient(to top, var(--dark), transparent);
+      z-index: 1;
+      pointer-events: none;
+    }
 
     /* ── Ticker ── */
     #ticker {
-      background: var(--blue-lt);
-      padding: 18px 0; overflow: hidden;
-      border-top: 1px solid #D6E4FF;
-      border-bottom: 1px solid #D6E4FF;
+      background: #07090F;
+      padding: 15px 0;
+      overflow: hidden;
+      border-top: 1px solid rgba(255,255,255,0.04);
+      border-bottom: 1px solid rgba(255,255,255,0.04);
     }
     .ticker-track {
-      display: flex; width: max-content;
-      animation: ticker-scroll 50s linear infinite;
+      display: flex;
+      width: max-content;
+      animation: ticker-scroll 48s linear infinite;
     }
     .ticker-track:hover { animation-play-state: paused; }
     .ticker-item {
-      white-space: nowrap; padding: 0 44px;
-      font-size: 13.5px; font-weight: 600; color: var(--ink2);
-      display: flex; align-items: center; gap: 44px;
+      white-space: nowrap;
+      padding: 0 40px;
+      font-size: 13px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.35);
+      display: flex; align-items: center; gap: 40px;
+      letter-spacing: 0.2px;
     }
     .ticker-item::after {
-      content: '·'; color: var(--blue); font-size: 20px; line-height: 1;
+      content: '◆';
+      color: var(--blue);
+      font-size: 7px;
+      opacity: 0.5;
     }
     @keyframes ticker-scroll {
       0%   { transform: translateX(0); }
       100% { transform: translateX(-50%); }
     }
 
-    /* ── Sections shared ── */
-    .section-label {
-      text-align: center;
-      font-size: 11px; font-weight: 700; letter-spacing: 2.5px;
-      text-transform: uppercase; color: var(--blue); margin-bottom: 14px;
+    /* ── Stats ── */
+    #stats {
+      background: var(--warm);
+      padding: 84px 48px;
+      border-bottom: 1px solid var(--border-warm);
     }
-    .section-title {
-      text-align: center;
-      font-size: clamp(28px, 3.5vw, 44px);
-      font-weight: 900; color: var(--ink);
-      letter-spacing: -1.1px; line-height: 1.12; margin-bottom: 14px;
+    .stats-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
     }
-    .section-sub {
-      text-align: center; font-size: 17px; color: var(--ink3);
-      max-width: 500px; margin: 0 auto 56px; line-height: 1.65;
+    .stat { padding: 0 40px; text-align: center; }
+    .stat + .stat { border-left: 1px solid var(--border-warm); }
+    .stat-num {
+      font-size: clamp(46px, 5vw, 68px);
+      font-weight: 900;
+      color: var(--blue);
+      letter-spacing: -2.5px;
+      line-height: 1;
+      margin-bottom: 14px;
+    }
+    .stat-desc {
+      font-size: 15px;
+      color: var(--ink2);
+      line-height: 1.5;
+    }
+    .stat-src {
+      font-size: 11px;
+      color: var(--ink3);
+      margin-top: 8px;
+      font-style: italic;
     }
 
-    /* ── Pijnpunten ── */
-    #pijnpunten { background: var(--bg-lt); padding: 96px 48px; }
-    .pain-grid {
-      max-width: 980px; margin: 0 auto;
-      display: grid; grid-template-columns: repeat(3,1fr); gap: 22px;
+    /* ── Pijnpunten (editorial text) ── */
+    #pijnpunten {
+      background: var(--warm);
+      padding: 104px 48px;
     }
-    .pain-card {
-      background: var(--white); border: 1px solid var(--border);
-      border-radius: 14px; padding: 28px 26px;
-      transition: transform 0.2s, box-shadow 0.2s;
+    .pain-inner {
+      max-width: 740px;
+      margin: 0 auto;
     }
-    .pain-card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 12px 36px rgba(0,0,0,0.07);
+    .section-eyebrow {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 20px;
     }
-    .pain-num {
-      font-size: 12px; font-weight: 700; letter-spacing: 1.5px;
-      color: var(--blue); margin-bottom: 14px; display: block;
+    .pain-headline {
+      font-size: clamp(30px, 3.5vw, 50px);
+      font-weight: 900;
+      color: var(--ink);
+      letter-spacing: -1.5px;
+      line-height: 1.1;
+      margin-bottom: 60px;
     }
-    .pain-title { font-size: 16px; font-weight: 700; color: var(--ink); margin-bottom: 10px; line-height: 1.3; }
-    .pain-body { font-size: 14px; color: var(--ink3); line-height: 1.68; }
+    .pain-para {
+      padding: 36px 0;
+      border-top: 1px solid var(--border-warm);
+    }
+    .pain-para:last-child {
+      border-bottom: 1px solid var(--border-warm);
+    }
+    .pain-para-lead {
+      font-size: clamp(17px, 1.5vw, 20px);
+      font-weight: 800;
+      color: var(--ink);
+      margin-bottom: 12px;
+      letter-spacing: -0.4px;
+      line-height: 1.25;
+    }
+    .pain-para-text {
+      font-size: clamp(15px, 1.2vw, 17px);
+      color: var(--ink3);
+      line-height: 1.80;
+    }
 
-    /* ── Oplossing ── */
-    #oplossing { background: var(--white); padding: 96px 48px; border-top: 1px solid var(--border); }
-    .oplossing-inner { max-width: 900px; margin: 0 auto; }
-    .oplossing-grid {
-      display: grid; grid-template-columns: repeat(2,1fr); gap: 18px;
+    /* ── Oplossing (clean list) ── */
+    #oplossing {
+      background: var(--white);
+      padding: 104px 48px;
+      border-top: 1px solid var(--border);
+    }
+    .opl-inner { max-width: 860px; margin: 0 auto; }
+    .opl-header { margin-bottom: 52px; }
+    .opl-title {
+      font-size: clamp(28px, 3.2vw, 44px);
+      font-weight: 900;
+      color: var(--ink);
+      letter-spacing: -1.2px;
+      line-height: 1.1;
+      margin-bottom: 14px;
+      margin-top: 18px;
+    }
+    .opl-sub {
+      font-size: 17px;
+      color: var(--ink3);
+      line-height: 1.65;
+      max-width: 500px;
+    }
+    .opl-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
     }
     .opl-item {
-      display: flex; align-items: flex-start; gap: 16px;
-      padding: 22px 22px; background: var(--bg-lt);
-      border: 1px solid var(--border); border-radius: 12px;
-      transition: border-color 0.2s;
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 26px 20px 26px 0;
+      border-top: 1px solid var(--border);
     }
-    .opl-item:hover { border-color: #BFCFEF; }
-    .opl-icon {
-      width: 44px; height: 44px; flex-shrink: 0;
-      background: var(--blue-lt); border-radius: 10px;
-      display: flex; align-items: center; justify-content: center;
+    .opl-item:nth-child(even) {
+      padding-left: 28px;
+      border-left: 1px solid var(--border);
+    }
+    .opl-check {
+      width: 20px; height: 20px;
+      flex-shrink: 0;
+      margin-top: 2px;
       color: var(--blue);
     }
-    .opl-text h3 { font-size: 15px; font-weight: 700; color: var(--ink); margin-bottom: 5px; }
-    .opl-text p { font-size: 13.5px; color: var(--ink3); line-height: 1.6; }
+    .opl-item-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 4px;
+    }
+    .opl-item-desc {
+      font-size: 13.5px;
+      color: var(--ink3);
+      line-height: 1.6;
+    }
 
-    /* ── Over Sky ── */
-    #over { background: var(--bg-lt); padding: 96px 48px; border-top: 1px solid var(--border); }
+    /* ── Over Sky (dark) ── */
+    #over {
+      background: var(--dark);
+      padding: 104px 48px;
+    }
     .over-inner {
-      max-width: 900px; margin: 0 auto;
-      display: grid; grid-template-columns: 280px 1fr;
-      gap: 72px; align-items: center;
+      max-width: 960px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      gap: 88px;
+      align-items: start;
     }
+    .over-foto-wrap { position: relative; }
     .over-foto {
-      width: 100%; aspect-ratio: 1/1;
-      object-fit: cover; object-position: center 10%;
-      border-radius: 20px; box-shadow: 0 24px 60px rgba(0,0,0,0.13);
+      width: 100%;
+      aspect-ratio: 3/4;
+      object-fit: cover;
+      object-position: center 5%;
+      border-radius: 16px;
+      display: block;
+      box-shadow: 0 40px 100px rgba(0,0,0,0.55);
     }
-    .over-label { font-size: 11px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: var(--blue); margin-bottom: 14px; }
-    .over-naam { font-size: clamp(28px, 3vw, 38px); font-weight: 900; color: var(--ink); letter-spacing: -0.8px; margin-bottom: 22px; line-height: 1.1; }
-    .over-tekst { font-size: 16px; color: var(--ink2); line-height: 1.78; }
-    .over-tekst p + p { margin-top: 16px; }
+    /* Accent line */
+    .over-foto-wrap::before {
+      content: '';
+      position: absolute;
+      top: 28px;
+      left: -16px;
+      width: 4px;
+      height: 64px;
+      background: var(--blue);
+      border-radius: 2px;
+    }
+    .over-text { padding-top: 4px; }
+    .over-eyebrow {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 18px;
+    }
+    .over-naam {
+      font-size: clamp(32px, 3vw, 48px);
+      font-weight: 900;
+      color: #ffffff;
+      letter-spacing: -1.5px;
+      line-height: 1.05;
+      margin-bottom: 30px;
+    }
+    .over-bio {
+      font-size: clamp(15px, 1.2vw, 17px);
+      color: rgba(255,255,255,0.62);
+      line-height: 1.80;
+    }
+    .over-bio p + p { margin-top: 18px; }
+    .over-bio strong {
+      color: rgba(255,255,255,0.88);
+      font-weight: 600;
+    }
+    .over-divider {
+      width: 40px; height: 2px;
+      background: rgba(255,255,255,0.10);
+      margin: 40px 0;
+    }
+    .over-facts {
+      display: flex;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+    .over-fact-num {
+      font-size: 28px;
+      font-weight: 900;
+      color: #ffffff;
+      letter-spacing: -1px;
+      line-height: 1;
+    }
+    .over-fact-label {
+      font-size: 13px;
+      color: rgba(255,255,255,0.38);
+      margin-top: 5px;
+    }
 
     /* ── CTA ── */
     #cta {
-      background: var(--dark); padding: 108px 48px; text-align: center;
-      position: relative; overflow: hidden;
+      background: #080B15;
+      padding: 116px 48px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      border-top: 1px solid rgba(255,255,255,0.04);
     }
     #cta::before {
-      content: ''; position: absolute; top: -100px; left: 50%; transform: translateX(-50%);
-      width: 700px; height: 400px;
-      background: radial-gradient(ellipse, rgba(37,99,235,0.15) 0%, transparent 70%);
+      content: '';
+      position: absolute;
+      top: -80px; left: 50%;
+      transform: translateX(-50%);
+      width: 640px; height: 320px;
+      background: radial-gradient(ellipse, rgba(37,99,235,0.16) 0%, transparent 70%);
       pointer-events: none;
     }
-    #cta .section-title { color: #fff; max-width: 580px; margin: 0 auto 14px; }
-    #cta .section-sub { color: rgba(255,255,255,0.56); margin-bottom: 44px; }
-    .cta-note { margin-top: 20px; font-size: 13px; color: rgba(255,255,255,0.28); }
+    .cta-inner { position: relative; z-index: 1; }
+    .cta-eyebrow {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 22px;
+    }
+    .cta-headline {
+      font-size: clamp(30px, 3.8vw, 52px);
+      font-weight: 900;
+      color: #fff;
+      letter-spacing: -1.6px;
+      line-height: 1.08;
+      max-width: 540px;
+      margin: 0 auto 16px;
+    }
+    .cta-sub {
+      font-size: 17px;
+      color: rgba(255,255,255,0.48);
+      max-width: 400px;
+      margin: 0 auto 50px;
+      line-height: 1.65;
+    }
+    .cta-buttons {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .cta-note {
+      margin-top: 24px;
+      font-size: 13px;
+      color: rgba(255,255,255,0.20);
+    }
 
     /* ── Footer ── */
     footer {
-      background: #080B13; padding: 26px 48px; text-align: center;
-      font-size: 13px; color: rgba(255,255,255,0.28);
-      border-top: 1px solid rgba(255,255,255,0.06);
+      background: #04060C;
+      padding: 28px 48px;
+      text-align: center;
+      font-size: 13px;
+      color: rgba(255,255,255,0.22);
+      border-top: 1px solid rgba(255,255,255,0.04);
     }
-    footer a { color: rgba(255,255,255,0.42); text-decoration: none; }
-    footer a:hover { color: rgba(255,255,255,0.65); }
+    footer a {
+      color: rgba(255,255,255,0.36);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    footer a:hover { color: rgba(255,255,255,0.58); }
 
     /* ── Responsive ── */
-    @media (max-width: 900px) {
-      .pain-grid { grid-template-columns: repeat(2,1fr); }
-      .oplossing-grid { grid-template-columns: 1fr; }
-      .over-inner { grid-template-columns: 1fr; gap: 40px; text-align: center; }
-      .over-foto { width: 200px; margin: 0 auto; display: block; }
+    @media (max-width: 960px) {
+      #hero {
+        grid-template-columns: 1fr;
+        min-height: auto;
+      }
+      .hero-right {
+        order: -1;
+        height: 58vw;
+        max-height: 440px;
+      }
+      .hero-right img { position: absolute; }
+      .hero-right::before { display: none; }
+      .hero-left {
+        padding: 56px 36px 72px;
+        align-items: center;
+        text-align: center;
+      }
+      .hero-sub { margin-left: auto; margin-right: auto; }
+      .hero-buttons { justify-content: center; }
+      .over-inner {
+        grid-template-columns: 1fr;
+        gap: 52px;
+      }
+      .over-foto-wrap {
+        max-width: 260px;
+        margin: 0 auto;
+      }
+      .over-foto-wrap::before { display: none; }
+      .over-text { text-align: center; }
+      .over-facts { justify-content: center; }
+      .over-divider { margin: 36px auto; }
     }
-    @media (max-width: 640px) {
-      nav { padding: 16px 20px; }
-      #hero { padding: 120px 20px 70px; }
-      #stats, #pijnpunten, #oplossing, #over, #cta { padding-left: 20px; padding-right: 20px; }
-      .stats-grid { grid-template-columns: 1fr; gap: 0; }
-      .stat-item { padding: 28px 0; }
-      .stat-item + .stat-item { border-left: none; border-top: 1px solid var(--border); }
-      .pain-grid { grid-template-columns: 1fr; }
-      .hero-buttons { flex-direction: column; align-items: center; }
-      .btn-primary, .btn-secondary { width: 100%; max-width: 320px; justify-content: center; }
-      footer { padding: 22px 20px; }
+    @media (max-width: 760px) {
+      .stats-inner { grid-template-columns: 1fr; }
+      .stat { padding: 32px 0; }
+      .stat + .stat { border-left: none; border-top: 1px solid var(--border-warm); }
+      .opl-list { grid-template-columns: 1fr; }
+      .opl-item:nth-child(even) { padding-left: 0; border-left: none; }
+    }
+    @media (max-width: 600px) {
+      nav { padding: 0 20px; height: 60px; }
+      .hero-left { padding: 48px 24px 64px; }
+      #stats, #pijnpunten, #oplossing, #over, #cta { padding-left: 24px; padding-right: 24px; }
+      .hero-buttons { flex-direction: column; width: 100%; }
+      .btn-primary, .btn-ghost { width: 100%; justify-content: center; }
+      .cta-buttons { flex-direction: column; align-items: center; }
+      .cta-buttons .btn-primary,
+      .cta-buttons .btn-ghost { width: 100%; max-width: 320px; justify-content: center; }
+      footer { padding: 24px 20px; }
     }
   </style>
 </head>
@@ -313,46 +603,32 @@
   </a>
 </nav>
 
-<!-- Hero -->
+<!-- Hero (split screen) -->
 <section id="hero">
-  <div class="hero-inner">
-    <span class="hero-label">Websites voor vakmensen</span>
-    <h1 class="hero-h1">Veel vakmensen zijn beter<br>dan hun website <em>laat zien.</em></h1>
+  <div class="hero-left">
+    <span class="hero-tag">Websites voor vakmensen</span>
+    <h1 class="hero-h1">
+      Veel vakmensen zijn beter<br>
+      dan hun website<br>
+      <em>laat zien.</em>
+    </h1>
     <p class="hero-sub">
       Ik zorg dat die eerste indruk wél klopt — zodat je website bezoekers omzet in klanten, in plaats van ze naar je concurrent te sturen.
     </p>
     <div class="hero-buttons">
       <a href="https://wa.me/31XXXXXXXXX" class="btn-primary" target="_blank" rel="noopener">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.533 5.852L.057 23.854a.5.5 0 0 0 .609.61l6.101-1.525A11.934 11.934 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.857a9.831 9.831 0 0 1-5.032-1.384l-.36-.213-3.724.931.977-3.633-.236-.374A9.839 9.839 0 0 1 2.143 12C2.143 6.542 6.542 2.143 12 2.143c5.458 0 9.857 4.399 9.857 9.857 0 5.458-4.399 9.857-9.857 9.857z"/></svg>
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.533 5.852L.057 23.854a.5.5 0 0 0 .609.61l6.101-1.525A11.934 11.934 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.857a9.831 9.831 0 0 1-5.032-1.384l-.36-.213-3.724.931.977-3.633-.236-.374A9.839 9.839 0 0 1 2.143 12C2.143 6.542 6.542 2.143 12 2.143c5.458 0 9.857 4.399 9.857 9.857 0 5.458-4.399 9.857-9.857 9.857z"/></svg>
         Stuur een bericht
       </a>
-      <a href="tel:+31XXXXXXXXX" class="btn-secondary">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.4a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.8 2.69h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      <a href="tel:+31XXXXXXXXX" class="btn-ghost">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.4a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.8 2.69h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
         Bel mij
       </a>
     </div>
-    <p class="hero-note">Geen verplichtingen. Gewoon een eerlijk gesprek.</p>
+    <p class="hero-note">Geen verplichtingen — gewoon een eerlijk gesprek.</p>
   </div>
-</section>
-
-<!-- Stats -->
-<section id="stats">
-  <div class="stats-grid">
-    <div class="stat-item">
-      <div class="stat-number">90%</div>
-      <div class="stat-label">van mensen zoekt online via Google<br>vóórdat ze contact opnemen</div>
-      <div class="stat-source">— Google Consumer Insights</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-number">0,05s</div>
-      <div class="stat-label">zo snel vormt iemand een<br>eerste indruk van je website</div>
-      <div class="stat-source">— Behaviour & Information Technology</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-number">57%</div>
-      <div class="stat-label">haakt direct af als je website<br>niet goed werkt op mobiel</div>
-      <div class="stat-source">— Think with Google</div>
-    </div>
+  <div class="hero-right">
+    <img src="foto-sky.png" alt="Sky Lemos — oprichter FlowEdge">
   </div>
 </section>
 
@@ -363,138 +639,145 @@
     <span class="ticker-item">Je eerste indruk kost je omzet — elke dag opnieuw</span>
     <span class="ticker-item">Je concurrent wordt gevonden. Jij niet.</span>
     <span class="ticker-item">Je website werkt niet goed op mobiel</span>
-    <span class="ticker-item">Je laat vertrouwen liggen dat je al hebt opgebouwd</span>
-    <span class="ticker-item">Je reviews bestaan, maar doen niets voor je conversie</span>
     <span class="ticker-item">Je bent online onzichtbaar in je eigen regio</span>
     <span class="ticker-item">Je bent beter dan wat je online laat zien</span>
+    <span class="ticker-item">Je reviews bestaan, maar doen niets voor je conversie</span>
     <span class="ticker-item">Je verliest klanten voordat ze je überhaupt bellen</span>
     <span class="ticker-item">Je eerste indruk kost je omzet — elke dag opnieuw</span>
     <span class="ticker-item">Je concurrent wordt gevonden. Jij niet.</span>
     <span class="ticker-item">Je website werkt niet goed op mobiel</span>
-    <span class="ticker-item">Je laat vertrouwen liggen dat je al hebt opgebouwd</span>
-    <span class="ticker-item">Je reviews bestaan, maar doen niets voor je conversie</span>
     <span class="ticker-item">Je bent online onzichtbaar in je eigen regio</span>
     <span class="ticker-item">Je bent beter dan wat je online laat zien</span>
+    <span class="ticker-item">Je reviews bestaan, maar doen niets voor je conversie</span>
   </div>
 </div>
 
-<!-- Pijnpunten -->
+<!-- Stats -->
+<section id="stats">
+  <div class="stats-inner">
+    <div class="stat">
+      <div class="stat-num">90%</div>
+      <div class="stat-desc">van mensen zoekt online via Google<br>vóórdat ze contact opnemen</div>
+      <div class="stat-src">— Google Consumer Insights</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">0,05s</div>
+      <div class="stat-desc">zo snel vormt iemand een<br>eerste indruk van je website</div>
+      <div class="stat-src">— Behaviour & Information Technology</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">57%</div>
+      <div class="stat-desc">haakt direct af als je website<br>niet goed werkt op mobiel</div>
+      <div class="stat-src">— Think with Google</div>
+    </div>
+  </div>
+</section>
+
+<!-- Pijnpunten (editorial) -->
 <section id="pijnpunten">
-  <p class="section-label">Herken jij dit?</p>
-  <h2 class="section-title">Je verliest klanten<br>zonder dat je het doorhebt.</h2>
-  <p class="section-sub">Je werkt hard, je levert goed werk, maar je online aanwezigheid vertelt een ander verhaal.</p>
-  <div class="pain-grid">
-    <div class="pain-card">
-      <span class="pain-num">01</span>
-      <h3 class="pain-title">Slechte eerste indruk</h3>
-      <p class="pain-body">Binnen een seconde beslist iemand of hij je vertrouwt. Als je website dat niet uitstraalt, ben je die klant al kwijt voordat het gesprek begint.</p>
+  <div class="pain-inner">
+    <p class="section-eyebrow">Herken je dit?</p>
+    <h2 class="pain-headline">
+      Je verliest klanten<br>zonder dat je het doorhebt.
+    </h2>
+    <div class="pain-para">
+      <p class="pain-para-lead">Je bent moeilijk te vinden.</p>
+      <p class="pain-para-text">Elke dag zoeken mensen in jouw regio naar een vakman. Maar als jouw naam niet bovenaan staat in Google, stuurt het ze automatisch naar je concurrent — iemand met een betere website, niet per se met betere kwaliteit. Je verliest die opdracht zonder dat je er ooit van wist.</p>
     </div>
-    <div class="pain-card">
-      <span class="pain-num">02</span>
-      <h3 class="pain-title">Niet vindbaar in je eigen regio</h3>
-      <p class="pain-body">Mensen zoeken jouw dienst — elke dag. Maar als Google niet weet waar je actief bent, stuurt het ze automatisch naar iemand anders.</p>
+    <div class="pain-para">
+      <p class="pain-para-lead">Je website overtuigt niet.</p>
+      <p class="pain-para-text">Een bezoeker neemt in 0,05 seconden een beslissing. Als je site er oud, rommelig of amateuristisch uitziet, is die beslissing al gemaakt voordat hij ook maar één zin heeft gelezen. Je bent goed in je vak — maar je website laat dat niet zien. En dan bellen ze die ander.</p>
     </div>
-    <div class="pain-card">
-      <span class="pain-num">03</span>
-      <h3 class="pain-title">Werkt niet goed op mobiel</h3>
-      <p class="pain-body">Het grootste deel van je bezoekers zit op een telefoon. Als je website daar niet goed werkt, haken ze direct af — zonder ooit te bellen.</p>
-    </div>
-    <div class="pain-card">
-      <span class="pain-num">04</span>
-      <h3 class="pain-title">Reviews die niets voor je doen</h3>
-      <p class="pain-body">Je hebt misschien prima Google-reviews. Maar zolang ze niet zichtbaar zijn op je website, verlies je de geloofwaardigheid die je al hebt opgebouwd.</p>
-    </div>
-    <div class="pain-card">
-      <span class="pain-num">05</span>
-      <h3 class="pain-title">Google kent je bedrijf niet</h3>
-      <p class="pain-body">Zonder de juiste technische instellingen — lokale SEO, schema markup — bestaat je bedrijf simpelweg niet voor een groot deel van je markt.</p>
-    </div>
-    <div class="pain-card">
-      <span class="pain-num">06</span>
-      <h3 class="pain-title">Technisch niet op orde</h3>
-      <p class="pain-body">Een trage of slecht opgebouwde website straalt onbetrouwbaarheid uit. En dat kost je aanvragen — elke dag, zonder dat je het merkt.</p>
+    <div class="pain-para">
+      <p class="pain-para-lead">Je hebt geen systeem dat voor je werkt.</p>
+      <p class="pain-para-text">Je Google-reviews zijn er, maar niemand ziet ze. Je werk is goed, maar er staan nauwelijks foto's van online. Je contactformulier staat ergens verstopt. Een website die niet converteert is geen website — het is een gemiste kans die je elke dag opnieuw geld kost.</p>
     </div>
   </div>
 </section>
 
-<!-- Oplossing -->
+<!-- Oplossing (clean list) -->
 <section id="oplossing">
-  <div class="oplossing-inner">
-    <p class="section-label">Wat ik voor je doe</p>
-    <h2 class="section-title">Een website die werkt.<br>Niet alleen mooi — maar vindbaar.</h2>
-    <p class="section-sub">Technisch volledig ingericht voor Google en mobiel, zodat jij gevonden wordt en bezoekers overtuigt.</p>
-    <div class="oplossing-grid">
+  <div class="opl-inner">
+    <div class="opl-header">
+      <p class="section-eyebrow">Wat ik voor je doe</p>
+      <h2 class="opl-title">Alles wat je nodig hebt<br>om online gevonden te worden.</h2>
+      <p class="opl-sub">Geen losse onderdelen die je zelf bij elkaar moet zetten. Eén pakket, volledig op maat, klaar om klanten te trekken.</p>
+    </div>
+    <div class="opl-list">
       <div class="opl-item">
-        <div class="opl-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
-        </div>
-        <div class="opl-text">
-          <h3>Volledig mobiel geoptimaliseerd</h3>
-          <p>Razendsnel en perfect leesbaar op elk apparaat. Geen bezoekers meer die afhaken op hun telefoon.</p>
+        <svg class="opl-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+        <div>
+          <div class="opl-item-title">Snelle, professionele website</div>
+          <div class="opl-item-desc">Klaar in 7–10 werkdagen. Ontworpen om te overtuigen.</div>
         </div>
       </div>
       <div class="opl-item">
-        <div class="opl-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-        </div>
-        <div class="opl-text">
-          <h3>Lokale vindbaarheid op Google</h3>
-          <p>Met schema markup en lokale SEO vertellen we Google precies wie je bent, waar je werkt en wat je doet.</p>
+        <svg class="opl-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+        <div>
+          <div class="opl-item-title">Lokale Google-optimalisatie</div>
+          <div class="opl-item-desc">Gevonden worden in jouw regio — niet ergens op pagina vier.</div>
         </div>
       </div>
       <div class="opl-item">
-        <div class="opl-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-        </div>
-        <div class="opl-text">
-          <h3>Google Reviews zichtbaar op je site</h3>
-          <p>Je reviews zijn je sterkste verkoopargument. Wij zorgen dat ze ook werken voor je conversie.</p>
+        <svg class="opl-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+        <div>
+          <div class="opl-item-title">Volledig mobiel-klaar</div>
+          <div class="opl-item-desc">Werkt perfect op elke telefoon. Altijd en overal.</div>
         </div>
       </div>
       <div class="opl-item">
-        <div class="opl-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-        </div>
-        <div class="opl-text">
-          <h3>Snelle laadtijd en technische SEO</h3>
-          <p>Alt-teksten, laadsnelheid, code-optimalisatie — zodat Google je website begrijpt en beloont.</p>
+        <svg class="opl-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+        <div>
+          <div class="opl-item-title">Google Reviews geïntegreerd</div>
+          <div class="opl-item-desc">Je bestaande reviews zichtbaar maken voor nieuwe bezoekers.</div>
         </div>
       </div>
       <div class="opl-item">
-        <div class="opl-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-        </div>
-        <div class="opl-text">
-          <h3>Professionele eerste indruk</h3>
-          <p>Een strakke website die de kwaliteit van jouw werk weerspiegelt en vertrouwen wekt vanaf de eerste seconde.</p>
+        <svg class="opl-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+        <div>
+          <div class="opl-item-title">Foto-integratie van jouw werk</div>
+          <div class="opl-item-desc">Jouw projecten, professioneel gepresenteerd. Dat verkoopt.</div>
         </div>
       </div>
       <div class="opl-item">
-        <div class="opl-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-        </div>
-        <div class="opl-text">
-          <h3>Geen gedoe, gewoon geregeld</h3>
-          <p>Hosting, updates en onderhoud zijn inbegrepen. Jij doet je werk. Ik zorg voor je online aanwezigheid.</p>
+        <svg class="opl-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+        <div>
+          <div class="opl-item-title">Heldere contactflow</div>
+          <div class="opl-item-desc">Bezoekers weten precies hoe ze je kunnen bereiken. Direct.</div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Over Sky -->
+<!-- Over Sky (dark) -->
 <section id="over">
   <div class="over-inner">
-    <img src="foto-sky.png" alt="Sky Lemos, oprichter van Flow Edge" class="over-foto" loading="lazy">
-    <div>
-      <p class="over-label">Wie is Flow Edge?</p>
+    <div class="over-foto-wrap">
+      <img src="foto-sky.png" alt="Sky Lemos — oprichter FlowEdge" class="over-foto">
+    </div>
+    <div class="over-text">
+      <p class="over-eyebrow">Over mij</p>
       <h2 class="over-naam">Sky Lemos</h2>
-      <div class="over-tekst">
-        <p>Mijn naam is Sky Lemos. Geboren in Amsterdam en al van jongs af aan bezig met alles wat met technologie te maken heeft. Waar anderen vastliepen op computers of systemen, dook ik er juist in. Ik wilde begrijpen hoe het werkte — en hoe het beter kon.</p>
-        <p>Tegelijkertijd zit ondernemen ook altijd al in mij. Ik zie snel waar dingen niet optimaal lopen en waar kansen liggen om het slimmer, strakker en effectiever te maken.</p>
-        <p>Flow Edge is daar een logisch gevolg van. Ik zag steeds opnieuw hetzelfde probleem: goede bedrijven die klanten mislopen. Niet omdat ze niet goed zijn in wat ze doen, maar omdat hun online uitstraling dat niet laat zien.</p>
-        <p>Wat voor mij begon als het helpen van mensen in mijn omgeving — een website bouwen hier, hosting regelen daar — groeide al snel uit tot een heldere overtuiging: hier kan ik écht iets betekenen.</p>
-        <p>Met Flow Edge help ik ondernemers om hun online aanwezigheid zo neer te zetten dat het wél klopt. Dat het vertrouwen uitstraalt, zichtbaar is en uiteindelijk doet waar het voor bedoeld is: klanten aantrekken.</p>
+      <div class="over-bio">
+        <p>Ik bouw websites voor vakmensen die keihard werken maar online onzichtbaar blijven. Niet omdat hun werk niet goed is — maar omdat ze nooit de kans hebben gekregen om dat online goed neer te zetten.</p>
+        <p>Ik begon jaren geleden met het bouwen van websites vanuit pure fascinatie voor hoe bedrijven online kunnen groeien. Na genoeg sloopwerken van sites die er slecht uitzagen en klanten mislopen, groeide dat al snel uit tot een heldere overtuiging: <strong>hier kan ik écht iets betekenen.</strong></p>
+        <p>Ik werk uitsluitend voor vakmensen: schilders, loodgieters, dakdekkers, aannemers. Mensen die hun vak verstaan maar geen tijd hebben voor gedoe. Ik regel het gewoon — professioneel, snel, en zonder ingewikkeld te doen.</p>
+      </div>
+      <div class="over-divider"></div>
+      <div class="over-facts">
+        <div>
+          <div class="over-fact-num">7–10</div>
+          <div class="over-fact-label">dagen doorlooptijd</div>
+        </div>
+        <div>
+          <div class="over-fact-num">100%</div>
+          <div class="over-fact-label">focus op vakmensen</div>
+        </div>
+        <div>
+          <div class="over-fact-num">NL</div>
+          <div class="over-fact-label">heel Nederland</div>
+        </div>
       </div>
     </div>
   </div>
@@ -502,20 +785,27 @@
 
 <!-- CTA -->
 <section id="cta">
-  <h2 class="section-title">Klaar om je online aanwezigheid<br>te laten werken?</h2>
-  <p class="section-sub">Geen verplichtingen. Geen ingewikkeld verhaal. Gewoon een eerlijk gesprek over wat er beter kan.</p>
-  <div class="hero-buttons">
-    <a href="https://wa.me/31XXXXXXXXX" class="btn-primary" target="_blank" rel="noopener">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.533 5.852L.057 23.854a.5.5 0 0 0 .609.61l6.101-1.525A11.934 11.934 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.857a9.831 9.831 0 0 1-5.032-1.384l-.36-.213-3.724.931.977-3.633-.236-.374A9.839 9.839 0 0 1 2.143 12C2.143 6.542 6.542 2.143 12 2.143c5.458 0 9.857 4.399 9.857 9.857 0 5.458-4.399 9.857-9.857 9.857z"/></svg>
-      Plan een gratis gesprek
-    </a>
+  <div class="cta-inner">
+    <p class="cta-eyebrow">Klaar om te beginnen?</p>
+    <h2 class="cta-headline">Laten we een gesprek plannen.</h2>
+    <p class="cta-sub">Geen verkooppraatje. Gewoon een eerlijk gesprek over wat je nodig hebt en wat dat oplevert.</p>
+    <div class="cta-buttons">
+      <a href="https://wa.me/31XXXXXXXXX" class="btn-primary" target="_blank" rel="noopener">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.533 5.852L.057 23.854a.5.5 0 0 0 .609.61l6.101-1.525A11.934 11.934 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.857a9.831 9.831 0 0 1-5.032-1.384l-.36-.213-3.724.931.977-3.633-.236-.374A9.839 9.839 0 0 1 2.143 12C2.143 6.542 6.542 2.143 12 2.143c5.458 0 9.857 4.399 9.857 9.857 0 5.458-4.399 9.857-9.857 9.857z"/></svg>
+        WhatsApp mij
+      </a>
+      <a href="tel:+31XXXXXXXXX" class="btn-ghost">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.4a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.8 2.69h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        Bel mij
+      </a>
+    </div>
+    <p class="cta-note">Geen verplichtingen — gewoon een eerlijk gesprek.</p>
   </div>
-  <p class="cta-note">Je hoort binnen een dag van me.</p>
 </section>
 
 <!-- Footer -->
 <footer>
-  <p>© 2026 Flow Edge &nbsp;·&nbsp; <a href="mailto:sky@flowedge.nl">sky@flowedge.nl</a></p>
+  <p>© 2025 FlowEdge &nbsp;·&nbsp; <a href="mailto:info@flowedge.nl">info@flowedge.nl</a> &nbsp;·&nbsp; KVK: [nummer]</p>
 </footer>
 
 </body>
