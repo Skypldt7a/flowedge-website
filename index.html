@@ -4,9 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>FlowEdge — Websites voor vakmensen die gevonden willen worden</title>
-  <meta name="description" content="FlowEdge bouwt professionele, Google-geoptimaliseerde websites voor vakmensen in Nederland. Meer aanvragen via internet — zonder gedoe.">
+  <meta name="description" content="FlowEdge bouwt professionele websites voor vakmensen in Nederland. Gevonden worden op Google, meer aanvragen, minder gedoe.">
   <meta property="og:title" content="FlowEdge — Websites voor vakmensen">
-  <meta property="og:description" content="Veel vakmensen zijn beter dan hun website laat zien. Ik zorg dat die eerste indruk wél klopt.">
+  <meta property="og:description" content="Veel bedrijven zijn beter dan hun website laat zien. Ik zorg dat die eerste indruk wél klopt.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://flowedge.nl">
   <script type="application/ld+json">
@@ -36,10 +36,8 @@
     /* ── Tokens ── */
     :root {
       --dark:        #0C0F1A;
-      --dark2:       #0A0D17;
       --blue:        #2563EB;
       --blue2:       #1D4ED8;
-      --blue-glow:   rgba(37,99,235,0.18);
       --warm:        #FAF9F7;
       --white:       #FFFFFF;
       --ink:         #111111;
@@ -56,7 +54,18 @@
       color: var(--ink);
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* ── Scroll animations ── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.72s cubic-bezier(0.22, 1, 0.36, 1),
+                  transform 0.72s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     /* ── Nav ── */
@@ -79,7 +88,6 @@
       background: var(--blue); color: #fff; text-decoration: none;
       font-size: 14px; font-weight: 600; padding: 10px 22px;
       border-radius: 8px; transition: background 0.2s, transform 0.15s;
-      white-space: nowrap;
     }
     .nav-cta:hover { background: var(--blue2); transform: translateY(-1px); }
 
@@ -100,7 +108,6 @@
       background: radial-gradient(ellipse at top left, rgba(37,99,235,0.10) 0%, transparent 60%);
       pointer-events: none;
     }
-
     .hero-left {
       display: flex;
       flex-direction: column;
@@ -135,10 +142,7 @@
       letter-spacing: -2px;
       margin-bottom: 28px;
     }
-    .hero-h1 em {
-      font-style: normal;
-      color: var(--blue);
-    }
+    .hero-h1 em { font-style: normal; color: var(--blue); }
     .hero-sub {
       font-size: clamp(16px, 1.3vw, 18px);
       color: rgba(255,255,255,0.58);
@@ -176,10 +180,7 @@
     .hero-note {
       font-size: 13px;
       color: rgba(255,255,255,0.24);
-      letter-spacing: 0.1px;
     }
-
-    /* Hero right — photo fills entire half */
     .hero-right {
       position: relative;
       overflow: hidden;
@@ -192,7 +193,6 @@
       object-fit: cover;
       object-position: center 8%;
     }
-    /* Gradient blending left edge into dark */
     .hero-right::before {
       content: '';
       position: absolute;
@@ -202,7 +202,6 @@
       z-index: 1;
       pointer-events: none;
     }
-    /* Bottom vignette */
     .hero-right::after {
       content: '';
       position: absolute;
@@ -247,47 +246,55 @@
       100% { transform: translateX(-50%); }
     }
 
-    /* ── Stats ── */
+    /* ── Trust bar (5 items, vertical) ── */
     #stats {
       background: var(--warm);
       padding: 84px 48px;
       border-bottom: 1px solid var(--border-warm);
     }
-    .stats-inner {
-      max-width: 900px;
+    .trust-inner {
+      max-width: 760px;
       margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
     }
-    .stat { padding: 0 40px; text-align: center; }
-    .stat + .stat { border-left: 1px solid var(--border-warm); }
-    .stat-num {
-      font-size: clamp(46px, 5vw, 68px);
-      font-weight: 900;
-      color: var(--blue);
-      letter-spacing: -2.5px;
-      line-height: 1;
-      margin-bottom: 14px;
+    .trust-item {
+      display: flex;
+      gap: 28px;
+      align-items: flex-start;
+      padding: 28px 0;
+      border-bottom: 1px solid var(--border-warm);
     }
-    .stat-desc {
-      font-size: 15px;
-      color: var(--ink2);
-      line-height: 1.5;
-    }
-    .stat-src {
+    .trust-item:first-child { border-top: 1px solid var(--border-warm); }
+    .trust-num {
       font-size: 11px;
+      font-weight: 700;
+      color: var(--blue);
+      min-width: 24px;
+      margin-top: 4px;
+      letter-spacing: 0.8px;
+      opacity: 0.7;
+    }
+    .trust-body { flex: 1; }
+    .trust-claim {
+      font-size: clamp(16px, 1.4vw, 18px);
+      font-weight: 800;
+      color: var(--ink);
+      margin-bottom: 6px;
+      letter-spacing: -0.3px;
+      line-height: 1.3;
+    }
+    .trust-desc {
+      font-size: 14.5px;
       color: var(--ink3);
-      margin-top: 8px;
-      font-style: italic;
+      line-height: 1.6;
     }
 
-    /* ── Pijnpunten (editorial text) ── */
+    /* ── Pijnpunten (editorial) ── */
     #pijnpunten {
       background: var(--warm);
       padding: 104px 48px;
     }
     .pain-inner {
-      max-width: 740px;
+      max-width: 720px;
       margin: 0 auto;
     }
     .section-eyebrow {
@@ -304,56 +311,67 @@
       color: var(--ink);
       letter-spacing: -1.5px;
       line-height: 1.1;
-      margin-bottom: 60px;
+      margin-bottom: 52px;
     }
-    .pain-para {
-      padding: 36px 0;
-      border-top: 1px solid var(--border-warm);
-    }
-    .pain-para:last-child {
-      border-bottom: 1px solid var(--border-warm);
-    }
-    .pain-para-lead {
-      font-size: clamp(17px, 1.5vw, 20px);
-      font-weight: 800;
-      color: var(--ink);
-      margin-bottom: 12px;
-      letter-spacing: -0.4px;
-      line-height: 1.25;
-    }
-    .pain-para-text {
+    .pain-text {
       font-size: clamp(15px, 1.2vw, 17px);
       color: var(--ink3);
-      line-height: 1.80;
+      line-height: 1.82;
+    }
+    .pain-text p + p { margin-top: 18px; }
+    .pain-text .emphasis {
+      color: var(--ink2);
+      font-weight: 600;
+    }
+    .pull-quote {
+      font-size: clamp(18px, 1.7vw, 23px);
+      font-weight: 800;
+      color: var(--ink);
+      line-height: 1.42;
+      letter-spacing: -0.3px;
+      padding: 32px 0 32px 28px;
+      border-left: 4px solid var(--blue);
+      margin: 48px 0;
+      font-style: normal;
     }
 
-    /* ── Oplossing (clean list) ── */
+    /* ── Oplossing ── */
     #oplossing {
       background: var(--white);
       padding: 104px 48px;
       border-top: 1px solid var(--border);
     }
     .opl-inner { max-width: 860px; margin: 0 auto; }
-    .opl-header { margin-bottom: 52px; }
+    .opl-header { margin-bottom: 40px; }
+    .opl-eyebrow {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 18px;
+    }
     .opl-title {
-      font-size: clamp(28px, 3.2vw, 44px);
+      font-size: clamp(26px, 3vw, 42px);
       font-weight: 900;
       color: var(--ink);
       letter-spacing: -1.2px;
       line-height: 1.1;
-      margin-bottom: 14px;
-      margin-top: 18px;
+      margin-bottom: 28px;
     }
-    .opl-sub {
-      font-size: 17px;
+    .opl-intro {
+      font-size: clamp(15px, 1.2vw, 17px);
       color: var(--ink3);
-      line-height: 1.65;
-      max-width: 500px;
+      line-height: 1.78;
+      max-width: 620px;
+      margin-bottom: 48px;
     }
+    .opl-intro p + p { margin-top: 14px; }
     .opl-list {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 0;
+      margin-bottom: 48px;
     }
     .opl-item {
       display: flex;
@@ -383,6 +401,15 @@
       color: var(--ink3);
       line-height: 1.6;
     }
+    .opl-closing {
+      font-size: clamp(15px, 1.2vw, 17px);
+      color: var(--ink3);
+      line-height: 1.78;
+      max-width: 620px;
+      border-top: 1px solid var(--border);
+      padding-top: 36px;
+    }
+    .opl-closing p + p { margin-top: 14px; }
 
     /* ── Over Sky (dark) ── */
     #over {
@@ -407,14 +434,11 @@
       display: block;
       box-shadow: 0 40px 100px rgba(0,0,0,0.55);
     }
-    /* Accent line */
     .over-foto-wrap::before {
       content: '';
       position: absolute;
-      top: 28px;
-      left: -16px;
-      width: 4px;
-      height: 64px;
+      top: 28px; left: -16px;
+      width: 4px; height: 64px;
       background: var(--blue);
       border-radius: 2px;
     }
@@ -441,10 +465,7 @@
       line-height: 1.80;
     }
     .over-bio p + p { margin-top: 18px; }
-    .over-bio strong {
-      color: rgba(255,255,255,0.88);
-      font-weight: 600;
-    }
+    .over-bio strong { color: rgba(255,255,255,0.88); font-weight: 600; }
     .over-divider {
       width: 40px; height: 2px;
       background: rgba(255,255,255,0.10);
@@ -487,13 +508,30 @@
       pointer-events: none;
     }
     .cta-inner { position: relative; z-index: 1; }
+    .cta-trigger {
+      max-width: 440px;
+      margin: 0 auto 44px;
+      line-height: 1.55;
+    }
+    .cta-trigger strong {
+      display: block;
+      font-size: clamp(17px, 1.5vw, 20px);
+      font-weight: 800;
+      color: rgba(255,255,255,0.88);
+      margin-bottom: 6px;
+      letter-spacing: -0.3px;
+    }
+    .cta-trigger span {
+      font-size: 16px;
+      color: rgba(255,255,255,0.46);
+    }
     .cta-eyebrow {
       font-size: 11px;
       font-weight: 700;
       letter-spacing: 2.5px;
       text-transform: uppercase;
       color: var(--blue);
-      margin-bottom: 22px;
+      margin-bottom: 20px;
     }
     .cta-headline {
       font-size: clamp(30px, 3.8vw, 52px);
@@ -507,7 +545,7 @@
     .cta-sub {
       font-size: 17px;
       color: rgba(255,255,255,0.48);
-      max-width: 400px;
+      max-width: 460px;
       margin: 0 auto 50px;
       line-height: 1.65;
     }
@@ -532,50 +570,26 @@
       color: rgba(255,255,255,0.22);
       border-top: 1px solid rgba(255,255,255,0.04);
     }
-    footer a {
-      color: rgba(255,255,255,0.36);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
+    footer a { color: rgba(255,255,255,0.36); text-decoration: none; transition: color 0.2s; }
     footer a:hover { color: rgba(255,255,255,0.58); }
 
     /* ── Responsive ── */
     @media (max-width: 960px) {
-      #hero {
-        grid-template-columns: 1fr;
-        min-height: auto;
-      }
-      .hero-right {
-        order: -1;
-        height: 58vw;
-        max-height: 440px;
-      }
+      #hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-right { order: -1; height: 58vw; max-height: 440px; }
       .hero-right img { position: absolute; }
       .hero-right::before { display: none; }
-      .hero-left {
-        padding: 56px 36px 72px;
-        align-items: center;
-        text-align: center;
-      }
+      .hero-left { padding: 56px 36px 72px; align-items: center; text-align: center; }
       .hero-sub { margin-left: auto; margin-right: auto; }
       .hero-buttons { justify-content: center; }
-      .over-inner {
-        grid-template-columns: 1fr;
-        gap: 52px;
-      }
-      .over-foto-wrap {
-        max-width: 260px;
-        margin: 0 auto;
-      }
+      .over-inner { grid-template-columns: 1fr; gap: 52px; }
+      .over-foto-wrap { max-width: 260px; margin: 0 auto; }
       .over-foto-wrap::before { display: none; }
       .over-text { text-align: center; }
       .over-facts { justify-content: center; }
       .over-divider { margin: 36px auto; }
     }
     @media (max-width: 760px) {
-      .stats-inner { grid-template-columns: 1fr; }
-      .stat { padding: 32px 0; }
-      .stat + .stat { border-left: none; border-top: 1px solid var(--border-warm); }
       .opl-list { grid-template-columns: 1fr; }
       .opl-item:nth-child(even) { padding-left: 0; border-left: none; }
     }
@@ -586,8 +600,7 @@
       .hero-buttons { flex-direction: column; width: 100%; }
       .btn-primary, .btn-ghost { width: 100%; justify-content: center; }
       .cta-buttons { flex-direction: column; align-items: center; }
-      .cta-buttons .btn-primary,
-      .cta-buttons .btn-ghost { width: 100%; max-width: 320px; justify-content: center; }
+      .cta-buttons .btn-primary, .cta-buttons .btn-ghost { width: 100%; max-width: 320px; justify-content: center; }
       footer { padding: 24px 20px; }
     }
   </style>
@@ -603,17 +616,17 @@
   </a>
 </nav>
 
-<!-- Hero (split screen) -->
+<!-- Hero -->
 <section id="hero">
   <div class="hero-left">
     <span class="hero-tag">Websites voor vakmensen</span>
     <h1 class="hero-h1">
-      Veel vakmensen zijn beter<br>
+      Veel bedrijven zijn beter<br>
       dan hun website<br>
       <em>laat zien.</em>
     </h1>
     <p class="hero-sub">
-      Ik zorg dat die eerste indruk wél klopt — zodat je website bezoekers omzet in klanten, in plaats van ze naar je concurrent te sturen.
+      Ik zorg dat die eerste indruk wél klopt, en klanten aantrekt in plaats van afstoot.
     </p>
     <div class="hero-buttons">
       <a href="https://wa.me/31XXXXXXXXX" class="btn-primary" target="_blank" rel="noopener">
@@ -652,23 +665,43 @@
   </div>
 </div>
 
-<!-- Stats -->
+<!-- Trust bar -->
 <section id="stats">
-  <div class="stats-inner">
-    <div class="stat">
-      <div class="stat-num">90%</div>
-      <div class="stat-desc">van mensen zoekt online via Google<br>vóórdat ze contact opnemen</div>
-      <div class="stat-src">— Google Consumer Insights</div>
+  <div class="trust-inner">
+    <div class="trust-item fade-up" data-delay="0">
+      <span class="trust-num">01</span>
+      <div class="trust-body">
+        <p class="trust-claim">Bijna 90% van online zoeken loopt via Google</p>
+        <p class="trust-desc">Niet zichtbaar zijn is geen detail — het kost je klanten.</p>
+      </div>
     </div>
-    <div class="stat">
-      <div class="stat-num">0,05s</div>
-      <div class="stat-desc">zo snel vormt iemand een<br>eerste indruk van je website</div>
-      <div class="stat-src">— Behaviour & Information Technology</div>
+    <div class="trust-item fade-up" data-delay="80">
+      <span class="trust-num">02</span>
+      <div class="trust-body">
+        <p class="trust-claim">Je bezoeker beslist in 50 milliseconden</p>
+        <p class="trust-desc">Je eerste indruk is sneller gemaakt dan je denkt.</p>
+      </div>
     </div>
-    <div class="stat">
-      <div class="stat-num">57%</div>
-      <div class="stat-desc">haakt direct af als je website<br>niet goed werkt op mobiel</div>
-      <div class="stat-src">— Think with Google</div>
+    <div class="trust-item fade-up" data-delay="160">
+      <span class="trust-num">03</span>
+      <div class="trust-body">
+        <p class="trust-claim">Meer dan de helft van mobiele bezoekers haakt af bij traag laden</p>
+        <p class="trust-desc">Een langzame website kost direct aanvragen.</p>
+      </div>
+    </div>
+    <div class="trust-item fade-up" data-delay="240">
+      <span class="trust-num">04</span>
+      <div class="trust-body">
+        <p class="trust-claim">Meer dan de helft van het webverkeer komt via mobiel</p>
+        <p class="trust-desc">Als je site daar niet sterk is, verlies je het grootste deel van je kansen.</p>
+      </div>
+    </div>
+    <div class="trust-item fade-up" data-delay="320">
+      <span class="trust-num">05</span>
+      <div class="trust-body">
+        <p class="trust-claim">Google kijkt eerst naar mobiel</p>
+        <p class="trust-desc">Mobiel design beïnvloedt niet alleen gebruiksgemak, maar ook je vindbaarheid.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -676,93 +709,102 @@
 <!-- Pijnpunten (editorial) -->
 <section id="pijnpunten">
   <div class="pain-inner">
-    <p class="section-eyebrow">Herken je dit?</p>
-    <h2 class="pain-headline">
-      Je verliest klanten<br>zonder dat je het doorhebt.
-    </h2>
-    <div class="pain-para">
-      <p class="pain-para-lead">Je bent moeilijk te vinden.</p>
-      <p class="pain-para-text">Elke dag zoeken mensen in jouw regio naar een vakman. Maar als jouw naam niet bovenaan staat in Google, stuurt het ze automatisch naar je concurrent — iemand met een betere website, niet per se met betere kwaliteit. Je verliest die opdracht zonder dat je er ooit van wist.</p>
+    <p class="section-eyebrow fade-up">Herken je dit?</p>
+    <h2 class="pain-headline fade-up">Je verliest klanten<br>zonder dat je het doorhebt.</h2>
+
+    <div class="pain-text fade-up">
+      <p>Je bent goed in wat je doet. Je levert strak werk, klanten zijn tevreden en via via komt er altijd wel iets binnen.</p>
+      <p class="emphasis">Maar online… voelt het anders.</p>
+      <p>Je website laat niet zien hoe goed je echt bent. Hij oogt verouderd, werkt niet lekker op mobiel of geeft simpelweg niet het vertrouwen dat je in het echt wél uitstraalt. En dat heeft gevolgen.</p>
+      <p>Mensen zoeken jouw dienst, elke dag. Maar als je niet zichtbaar bent op Google, komen ze automatisch bij een ander uit. Bezoekers die wél op je website komen, beslissen binnen een paar seconden of ze blijven of weggaan. Als die eerste indruk niet klopt, ben je ze kwijt voordat ze contact opnemen.</p>
     </div>
-    <div class="pain-para">
-      <p class="pain-para-lead">Je website overtuigt niet.</p>
-      <p class="pain-para-text">Een bezoeker neemt in 0,05 seconden een beslissing. Als je site er oud, rommelig of amateuristisch uitziet, is die beslissing al gemaakt voordat hij ook maar één zin heeft gelezen. Je bent goed in je vak — maar je website laat dat niet zien. En dan bellen ze die ander.</p>
-    </div>
-    <div class="pain-para">
-      <p class="pain-para-lead">Je hebt geen systeem dat voor je werkt.</p>
-      <p class="pain-para-text">Je Google-reviews zijn er, maar niemand ziet ze. Je werk is goed, maar er staan nauwelijks foto's van online. Je contactformulier staat ergens verstopt. Een website die niet converteert is geen website — het is een gemiste kans die je elke dag opnieuw geld kost.</p>
+
+    <blockquote class="pull-quote fade-up">
+      En ondertussen weet je dat er veel meer uit te halen valt — maar je hebt geen idee waar je moet beginnen, of hoe je het goed aanpakt.
+    </blockquote>
+
+    <div class="pain-text fade-up">
+      <p>Dat is precies waar het voor veel vakmensen misgaat. Niet omdat ze niet goed zijn in hun werk, maar omdat hun online aanwezigheid dat simpelweg niet laat zien.</p>
     </div>
   </div>
 </section>
 
-<!-- Oplossing (clean list) -->
+<!-- Oplossing -->
 <section id="oplossing">
   <div class="opl-inner">
-    <div class="opl-header">
-      <p class="section-eyebrow">Wat ik voor je doe</p>
-      <h2 class="opl-title">Alles wat je nodig hebt<br>om online gevonden te worden.</h2>
-      <p class="opl-sub">Geen losse onderdelen die je zelf bij elkaar moet zetten. Eén pakket, volledig op maat, klaar om klanten te trekken.</p>
+    <div class="opl-header fade-up">
+      <p class="opl-eyebrow">Wat ik voor je doe</p>
+      <h2 class="opl-title">Zo zorgt FlowEdge dat jouw<br>online aanwezigheid wél werkt.</h2>
+      <div class="opl-intro">
+        <p>Wat je nodig hebt is geen "mooie website". Je hebt een website nodig die vertrouwen opwekt, zichtbaar is en daadwerkelijk klanten oplevert.</p>
+        <p>Dat is precies waar FlowEdge op is gebouwd. Ik zorg ervoor dat jouw online aanwezigheid klopt — van eerste indruk tot vindbaarheid op Google. Dat betekent:</p>
+      </div>
     </div>
     <div class="opl-list">
-      <div class="opl-item">
+      <div class="opl-item fade-up" data-delay="0">
         <svg class="opl-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
         <div>
-          <div class="opl-item-title">Snelle, professionele website</div>
-          <div class="opl-item-desc">Klaar in 7–10 werkdagen. Ontworpen om te overtuigen.</div>
+          <div class="opl-item-title">Een strakke, moderne website</div>
+          <div class="opl-item-desc">Die direct vertrouwen uitstraalt bij eerste indruk.</div>
         </div>
       </div>
-      <div class="opl-item">
+      <div class="opl-item fade-up" data-delay="80">
         <svg class="opl-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
         <div>
-          <div class="opl-item-title">Lokale Google-optimalisatie</div>
-          <div class="opl-item-desc">Gevonden worden in jouw regio — niet ergens op pagina vier.</div>
+          <div class="opl-item-title">Volledig geoptimaliseerd voor mobiel</div>
+          <div class="opl-item-desc">Waar het grootste deel van je bezoekers zit.</div>
         </div>
       </div>
-      <div class="opl-item">
+      <div class="opl-item fade-up" data-delay="40">
         <svg class="opl-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
         <div>
-          <div class="opl-item-title">Volledig mobiel-klaar</div>
-          <div class="opl-item-desc">Werkt perfect op elke telefoon. Altijd en overal.</div>
+          <div class="opl-item-title">Snelle laadtijden, technisch sterk</div>
+          <div class="opl-item-desc">Geen bezoekers kwijt door een trage website.</div>
         </div>
       </div>
-      <div class="opl-item">
+      <div class="opl-item fade-up" data-delay="120">
+        <svg class="opl-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+        <div>
+          <div class="opl-item-title">Lokale vindbaarheid op Google</div>
+          <div class="opl-item-desc">Gevonden worden op het moment dat mensen actief zoeken.</div>
+        </div>
+      </div>
+      <div class="opl-item fade-up" data-delay="80">
         <svg class="opl-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
         <div>
           <div class="opl-item-title">Google Reviews geïntegreerd</div>
-          <div class="opl-item-desc">Je bestaande reviews zichtbaar maken voor nieuwe bezoekers.</div>
+          <div class="opl-item-desc">Zodat je bestaande reputatie ook online voor je werkt.</div>
         </div>
       </div>
-      <div class="opl-item">
+      <div class="opl-item fade-up" data-delay="160">
         <svg class="opl-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
         <div>
-          <div class="opl-item-title">Foto-integratie van jouw werk</div>
-          <div class="opl-item-desc">Jouw projecten, professioneel gepresenteerd. Dat verkoopt.</div>
+          <div class="opl-item-title">Een website die 24/7 voor je werkt</div>
+          <div class="opl-item-desc">En bezoekers omzet in aanvragen — ook als jij slaapt.</div>
         </div>
       </div>
-      <div class="opl-item">
-        <svg class="opl-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-        <div>
-          <div class="opl-item-title">Heldere contactflow</div>
-          <div class="opl-item-desc">Bezoekers weten precies hoe ze je kunnen bereiken. Direct.</div>
-        </div>
-      </div>
+    </div>
+    <div class="opl-closing fade-up">
+      <p>Alles is gericht op één doel: ervoor zorgen dat mensen die jouw website bezoeken, ook daadwerkelijk contact met je opnemen.</p>
+      <p>Geen onnodige complexiteit. Geen dingen die je niet nodig hebt. Gewoon een sterke online basis die doet wat het moet doen: klanten aantrekken en je bedrijf laten groeien.</p>
     </div>
   </div>
 </section>
 
-<!-- Over Sky (dark) -->
+<!-- Over Sky -->
 <section id="over">
   <div class="over-inner">
-    <div class="over-foto-wrap">
+    <div class="over-foto-wrap fade-up">
       <img src="foto-sky.png" alt="Sky Lemos — oprichter FlowEdge" class="over-foto">
     </div>
-    <div class="over-text">
+    <div class="over-text fade-up" data-delay="120">
       <p class="over-eyebrow">Over mij</p>
       <h2 class="over-naam">Sky Lemos</h2>
       <div class="over-bio">
-        <p>Ik bouw websites voor vakmensen die keihard werken maar online onzichtbaar blijven. Niet omdat hun werk niet goed is — maar omdat ze nooit de kans hebben gekregen om dat online goed neer te zetten.</p>
-        <p>Ik begon jaren geleden met het bouwen van websites vanuit pure fascinatie voor hoe bedrijven online kunnen groeien. Na genoeg sloopwerken van sites die er slecht uitzagen en klanten mislopen, groeide dat al snel uit tot een heldere overtuiging: <strong>hier kan ik écht iets betekenen.</strong></p>
-        <p>Ik werk uitsluitend voor vakmensen: schilders, loodgieters, dakdekkers, aannemers. Mensen die hun vak verstaan maar geen tijd hebben voor gedoe. Ik regel het gewoon — professioneel, snel, en zonder ingewikkeld te doen.</p>
+        <p>Mijn naam is Sky Lemos. Geboren in Amsterdam en van jongs af aan gefascineerd door technologie. Computers, systemen en alles wat zich achter de schermen afspeelt, trokken mij altijd al aan. Naast die technische basis ben ik altijd ondernemend geweest — ik zag al vroeg kansen waar anderen ze lieten liggen.</p>
+        <p>Ik zag steeds opnieuw hetzelfde probleem: goede bedrijven die klanten mislopen. Niet omdat ze niet goed zijn in wat ze doen, maar omdat hun online uitstraling dat niet laat zien. Een website die niet overtuigt. Slechte vindbaarheid. Geen sterke eerste indruk. En in een wereld waarin alles online begint, kost dat simpelweg omzet.</p>
+        <p>Je website is de eerste indruk. Als die niet strak, snel en professioneel is, ben je die klant al kwijt voordat het gesprek begint. En als je daarnaast niet goed zichtbaar bent op Google, besta je simpelweg niet voor een groot deel van je markt.</p>
+        <p><strong>Dat is waar FlowEdge het verschil maakt.</strong> Wat begon met het helpen van mensen in mijn omgeving is uitgegroeid tot een duidelijke missie: ondernemers helpen om hun online aanwezigheid naar een niveau te brengen dat wél klanten aantrekt en groei mogelijk maakt.</p>
       </div>
       <div class="over-divider"></div>
       <div class="over-facts">
@@ -786,10 +828,14 @@
 <!-- CTA -->
 <section id="cta">
   <div class="cta-inner">
-    <p class="cta-eyebrow">Klaar om te beginnen?</p>
-    <h2 class="cta-headline">Laten we een gesprek plannen.</h2>
-    <p class="cta-sub">Geen verkooppraatje. Gewoon een eerlijk gesprek over wat je nodig hebt en wat dat oplevert.</p>
-    <div class="cta-buttons">
+    <div class="cta-trigger fade-up">
+      <strong>Je weet dat er meer uit te halen valt.</strong>
+      <span>Dit is het moment om dat ook echt te doen.</span>
+    </div>
+    <p class="cta-eyebrow fade-up">Klaar om te beginnen?</p>
+    <h2 class="cta-headline fade-up">Klaar om hier werk van te maken?</h2>
+    <p class="cta-sub fade-up">Plan een kort videogesprek van 20 minuten. Dan laat ik je precies zien waar jij nu klanten misloopt — en hoe we dat oplossen.</p>
+    <div class="cta-buttons fade-up" data-delay="80">
       <a href="https://wa.me/31XXXXXXXXX" class="btn-primary" target="_blank" rel="noopener">
         <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.533 5.852L.057 23.854a.5.5 0 0 0 .609.61l6.101-1.525A11.934 11.934 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.857a9.831 9.831 0 0 1-5.032-1.384l-.36-.213-3.724.931.977-3.633-.236-.374A9.839 9.839 0 0 1 2.143 12C2.143 6.542 6.542 2.143 12 2.143c5.458 0 9.857 4.399 9.857 9.857 0 5.458-4.399 9.857-9.857 9.857z"/></svg>
         WhatsApp mij
@@ -799,7 +845,7 @@
         Bel mij
       </a>
     </div>
-    <p class="cta-note">Geen verplichtingen — gewoon een eerlijk gesprek.</p>
+    <p class="cta-note">Geen verplichtingen. Gewoon duidelijkheid over wat er beter kan.</p>
   </div>
 </section>
 
@@ -807,6 +853,27 @@
 <footer>
   <p>© 2025 FlowEdge &nbsp;·&nbsp; <a href="mailto:info@flowedge.nl">info@flowedge.nl</a> &nbsp;·&nbsp; KVK: [nummer]</p>
 </footer>
+
+<script>
+  // Scroll-triggered fade-in
+  (function() {
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          var delay = Number(entry.target.dataset.delay) || 0;
+          setTimeout(function() {
+            entry.target.classList.add('visible');
+          }, delay);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.fade-up').forEach(function(el) {
+      observer.observe(el);
+    });
+  })();
+</script>
 
 </body>
 </html>
